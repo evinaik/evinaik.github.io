@@ -4,16 +4,16 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: "gatsby-source-sanity",
+      resolve: `gatsby-plugin-typescript`,
       options: {
-        projectId: "jtnvpb82",
-        dataset: "",
+        isTSX: true,
+        jsxPragma: `jsx`,
+        allExtensions: true,
       },
     },
     "gatsby-plugin-styled-components",
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
-    "gatsby-plugin-mdx",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
@@ -32,5 +32,6 @@ module.exports = {
       },
       __key: "pages",
     },
+    "gatsby-plugin-mdx",
   ],
 };
