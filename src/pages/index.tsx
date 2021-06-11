@@ -69,16 +69,13 @@ const fade = keyframes`
 
 const FadeIn = styled.div<{ delay: number }>`
   animation: ${(props) => props.delay}s ease 0s normal forwards 1 ${fade};
+  animation-iteration-count: 1;
 `;
 
 function IndexPage() {
   return (
     <React.Fragment>
       <FadeIn delay={4}>
-        <p>Hey! My name is Ekansh.</p>
-      </FadeIn>
-
-      <FadeIn delay={5}>
         <p>
           I'm a software engineer at{" "}
           <TwoSigma target="_blank" href="https://www.twosigma.com/">
@@ -90,8 +87,6 @@ function IndexPage() {
           </Maryland>
           .
         </p>
-      </FadeIn>
-      <FadeIn delay={7}>
         <p>
           In 2019, I interned at{" "}
           <TwoSigma target="_blank" href="https://www.twosigmaiq.com/">
@@ -111,9 +106,6 @@ function IndexPage() {
           </Amazon>
           .
         </p>
-      </FadeIn>
-
-      <FadeIn delay={9}>
         <p>
           At school, I completed research at the{" "}
           <Maryland target="_blank" href="http://mbrc.umd.edu/">
@@ -130,8 +122,6 @@ function IndexPage() {
           </QUEST>
           , a program focusing on design and innovation.
         </p>
-      </FadeIn>
-      <FadeIn delay={11}>
         <p>
           Outside of that, I share code on{" "}
           <GitHub target="_blank" href="https://github.com/evinaik/">
@@ -150,7 +140,7 @@ function IndexPage() {
           as well.
         </p>
       </FadeIn>
-      <FadeIn delay={13}>
+      <FadeIn delay={6}>
         <p>
           Interested? Contact me at{" "}
           <Email target="_blank" href="mailto:ekansh.vinaik@gmail.com">
