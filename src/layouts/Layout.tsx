@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import { SEO } from "../components/seo/seo";
 import { Header } from "../components/layout/Header";
+import { MDXProvider } from "@mdx-js/react";
 
 const GlobalStyles = createGlobalStyle`
   html {
@@ -42,14 +42,12 @@ export function Layout({ children }: Props) {
   return (
     <>
       <GlobalStyles />
-      <SEO
-        description="Ekansh Vinaik's personal website."
-        title="Ekansh Vinaik"
-      />
       <Main>
         <Header />
         <HR />
-        <Article>{children}</Article>
+        <MDXProvider components={{}}>
+          <Article>{children}</Article>
+        </MDXProvider>
       </Main>
     </>
   );

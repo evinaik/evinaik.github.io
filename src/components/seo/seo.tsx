@@ -3,7 +3,7 @@ import * as React from "react";
 import { Helmet } from "react-helmet";
 
 interface Props {
-  description: string;
+  description?: string;
   title: string;
 }
 

@@ -3,6 +3,7 @@ import { graphql, Link, useStaticQuery } from "gatsby";
 import * as React from "react";
 import styled from "styled-components";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { SEO } from "../components/seo/seo";
 
 dayjs.extend(relativeTime);
 
@@ -51,19 +52,22 @@ function BlogPage() {
     }
   `);
   return (
-    <List>
-      {data.allMdx.nodes.map((n) => (
-        <ListItem key={n.slug}>
-          <ItemContainer>
-            <h2>
-              <BlogLink to={`/${n.slug}`}>{n.frontmatter.title}</BlogLink>
-            </h2>
-            <p>{n.excerpt}</p>
-            <p>{dayjs(n.frontmatter.date).fromNow()}</p>
-          </ItemContainer>
-        </ListItem>
-      ))}
-    </List>
+    <React.Fragment>
+      <SEO description="Ekansh Vinaik's blog." title="Ekansh Vinaik's Blog" />
+      <List>
+        {data.allMdx.nodes.map((n) => (
+          <ListItem key={n.slug}>
+            <ItemContainer>
+              <h2>
+                <BlogLink to={`/${n.slug}`}>{n.frontmatter.title}</BlogLink>
+              </h2>
+              <p>{n.excerpt}</p>
+              <p>{dayjs(n.frontmatter.date).fromNow()}</p>
+            </ItemContainer>
+          </ListItem>
+        ))}
+      </List>
+    </React.Fragment>
   );
 }
 

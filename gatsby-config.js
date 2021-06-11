@@ -32,6 +32,25 @@ module.exports = {
       },
       __key: "pages",
     },
-    "gatsby-plugin-mdx",
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        name: "Ekansh Vinaik",
+        short_name: "Ekansh",
+        start_url: "/",
+        background_color: "#fff",
+        theme_color: "#99f",
+        display: "standalone",
+        icon: "src/images/ekansh.png",
+      },
+    },
+    {
+      resolve: "gatsby-plugin-mdx",
+      options: {
+        defaultLayouts: {
+          pages: require.resolve("./src/layouts/BlogPostLayout.tsx"),
+        },
+      },
+    },
   ],
 };

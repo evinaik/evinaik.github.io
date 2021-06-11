@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import { SEO } from "../components/seo/seo";
 
 const StyledLink = styled.a`
   text-decoration: none;
@@ -64,6 +65,10 @@ const Maryland = styled(WhiteLink)`
 function IndexPage() {
   return (
     <React.Fragment>
+      <SEO
+        description="Ekansh Vinaik's personal website."
+        title="Ekansh Vinaik"
+      />
       <p>
         I'm a software engineer at{" "}
         <TwoSigma target="_blank" href="https://www.twosigma.com/">
