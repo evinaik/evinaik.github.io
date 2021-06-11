@@ -82,7 +82,7 @@ export function Header() {
             <NavLink to="/blog">Blog</NavLink>
           </NavListItem>
           <NavListItem>
-            <NavALink href="https://github.com/evinaik/resume/blob/master/resume.pdf">
+            <NavALink href="https://docs.google.com/viewer?url=https://github.com/evinaik/resume/raw/master/resume.pdf">
               Resume
             </NavALink>
           </NavListItem>
