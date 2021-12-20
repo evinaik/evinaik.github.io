@@ -1,6 +1,9 @@
 import * as React from "react";
 import styled from "styled-components";
 import { SEO } from "../components/seo/seo";
+import fb from "../images/fb.png";
+import twitter from "../images/twitter.png";
+import yt from "../images/yt.png";
 
 const StyledLink = styled.a`
   text-decoration: none;
@@ -60,6 +63,13 @@ const QUEST = styled(WhiteLink)`
 
 const Maryland = styled(WhiteLink)`
   background-color: #e03a3e;
+`;
+
+const HR = styled.hr`
+  border-color: var(--purple);
+  border-radius: 20px;
+  filter: brightness(2);
+  width: 100%;
 `;
 
 function IndexPage() {
@@ -139,6 +149,24 @@ function IndexPage() {
         </Email>
         .
       </p>
+      <HR />
+      <span style={{ opacity: 0 }}>
+        TODO: make these links live.
+        <a href="https://www.facebook.com/ekansh.vinaik/" target="_blank">
+          <img width={16} src={fb} />
+        </a>
+        |
+        <a href="https://twitter.com/EkanshVinaik" target="_blank">
+          <img width={16} src={twitter} />
+        </a>
+        |
+        <a
+          href="https://www.youtube.com/channel/UCqMI3QR6s7pKQw-DShcSFuA"
+          target="_blank"
+        >
+          <img width={16} src={yt} />
+        </a>
+      </span>
     </React.Fragment>
   );
 }
