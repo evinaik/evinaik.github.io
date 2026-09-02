@@ -1,0 +1,79 @@
+:root {
+  --purple: hsl(240, 100%, 72%);
+  --bg: #fff;
+  --text: #4a4a52;
+  --heading: #2e2e36;
+  --rule: hsl(240, 100%, 88%);
+
+  --font-mono: "SF Mono", "SFMono-Regular", "Source Code Pro", "Inconsolata",
+    "Monaco", ui-monospace, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --purple: hsl(240, 100%, 80%);
+    --bg: #131318;
+    --text: #b0b0bb;
+    --heading: #e4e4ec;
+    --rule: hsl(240, 30%, 28%);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+main {
+  margin: 0 auto;
+  max-width: 640px;
+  padding: 3rem 1.25rem 4rem;
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  main {
+    padding: 2rem 1.125rem 3rem;
+  }
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  border-radius: 20px;
+  margin: 1.75rem 0;
+  width: 100%;
+}
+
+p {
+  margin: 0 0 1.5rem;
+}
+
+a {
+  color: var(--purple);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 2px;
+  border-radius: 2px;
+}

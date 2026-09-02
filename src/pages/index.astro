@@ -1,0 +1,141 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Ekansh Vinaik"
+  description="Ekansh Vinaik's personal website."
+>
+  <p>
+    I'm a software engineer at <a
+      class="tag two-sigma"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://www.twosigma.com/">Two Sigma</a
+    >. I studied Computer Science at the <a
+      class="tag maryland"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://www.umd.edu/">University of Maryland, College Park</a
+    >.
+  </p>
+  <p>
+    In 2019, I interned at <a
+      class="tag two-sigma"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://www.twosigmaiq.com/">Two Sigma Insurance Quantified</a
+    > and <a
+      class="tag facebook"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://www.facebook.com/">Facebook</a
+    >. Previously, I've had a chance to contribute at <a
+      class="tag capital-one"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://www.capitalonelabs.com/">Capital One Labs</a
+    >, and <a
+      class="tag amazon"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://aws.amazon.com/">Amazon Web Services</a
+    >.
+  </p>
+  <p>
+    At school, I completed research at the <a
+      class="tag maryland"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="http://mbrc.umd.edu/">Maryland Blended Reality Center</a
+    >. I specialized in virtual and augmented reality, including their medical
+    applications and streaming optimizations. I'm also an alumni of the <a
+      class="tag quest"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://www.rhsmith.umd.edu/programs/undergraduate-programs/academics/fellows-special-programs/quest"
+      >QUEST Honors Program</a
+    >, a program focusing on design and innovation.
+  </p>
+  <p>
+    Outside of that, I share code on <a
+      class="tag github"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://github.com/evinaik/">GitHub</a
+    >, where you'll find both completed projects and works in progress. For
+    example, I've published a multidisciplinary team designing a virtual reality
+    memory palace called <a
+      class="tag discovr"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://github.com/evinaik/discovr">DiscoVR</a
+    >. Feel free to connect with me on my <a
+      class="tag linkedin"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://linkedin.com/in/evinaik">LinkedIn</a
+    > as well.
+  </p>
+  <p>
+    Interested? Contact me at <a
+      class="tag email"
+      href="mailto:ekansh.vinaik@gmail.com">ekansh.vinaik@gmail.com</a
+    >.
+  </p>
+  <hr />
+</Layout>
+
+<style>
+  .tag {
+    border-radius: 3px;
+    color: #fff;
+    padding: 0.15em 0.3em;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: filter 120ms ease-in-out;
+  }
+
+  .tag:hover {
+    filter: brightness(1.15) opacity(0.85);
+  }
+
+  /* Long tags would overflow a narrow viewport if kept on one line. */
+  @media (max-width: 400px) {
+    .tag {
+      white-space: normal;
+    }
+  }
+
+  .two-sigma {
+    background-color: #4398a4;
+  }
+  .amazon {
+    background-color: #f90;
+    color: #000;
+  }
+  .capital-one {
+    background-color: #004977;
+  }
+  .facebook {
+    background-color: #3b5998;
+  }
+  .discovr {
+    background-color: #7f1ae5;
+  }
+  .email {
+    background-color: #ea4335;
+  }
+  .github {
+    background-color: #333;
+  }
+  .linkedin {
+    background-color: #0077b5;
+  }
+  .quest {
+    background-color: #5e2b3c;
+  }
+  .maryland {
+    background-color: #e03a3e;
+  }
+</style>
