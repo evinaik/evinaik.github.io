@@ -1,48 +1,21 @@
 {
-  "name": "placeholder-blog",
-  "version": "1.0.0",
+  "name": "ekanshvinaik.com",
+  "version": "2.0.0",
   "private": true,
-  "description": "Placeholder Blog",
+  "description": "Ekansh Vinaik's personal website.",
   "author": "Ekansh Vinaik",
-  "keywords": [
-    "gatsby"
-  ],
+  "type": "module",
   "scripts": {
-    "develop": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "deploy": "gatsby build && echo 'ekanshvinaik.com' > ./public/CNAME && gh-pages -d public -b main"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "deploy": "astro build && gh-pages -d dist -b main"
   },
   "dependencies": {
-    "@mdx-js/mdx": "^1.6.22",
-    "@mdx-js/react": "^1.6.22",
-    "babel-plugin-styled-components": "^1.12.0",
-    "dayjs": "^1.10.5",
-    "gatsby": "^3.6.2",
-    "gatsby-plugin-image": "^1.6.0",
-    "gatsby-plugin-layout": "^2.7.1",
-    "gatsby-plugin-manifest": "^3.7.1",
-    "gatsby-plugin-mdx": "^2.7.1",
-    "gatsby-plugin-react-helmet": "^4.6.0",
-    "gatsby-plugin-sharp": "^3.6.0",
-    "gatsby-plugin-styled-components": "^4.6.0",
-    "gatsby-plugin-typescript": "^3.6.0",
-    "gatsby-source-filesystem": "^3.6.0",
-    "gatsby-transformer-sharp": "^3.6.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0",
-    "styled-components": "^5.3.0",
-    "typewriter-effect": "^2.17.0"
+    "astro": "^5.6.1"
   },
   "devDependencies": {
-    "@types/node": "^15.12.2",
-    "@types/react": "^17.0.9",
-    "@types/react-dom": "^17.0.6",
-    "@types/styled-components": "^5.1.10",
-    "gh-pages": "^3.2.0",
-    "prettier": "^2.3.1"
+    "gh-pages": "^6.3.0"
   }
 }
