@@ -1,0 +1,33 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CV from "../components/CV.astro";
+const RESUME_URL =
+  "https://docs.google.com/viewer?url=https://github.com/evinaik/resume/raw/master/resume.pdf";
+---
+
+<Layout title="Stuff · Ekansh Vinaik" description="Ekansh Vinaik's experience, projects, and other stuff.">
+  <CV />
+  <p class="resume"><a href={RESUME_URL}>Resume</a></p>
+</Layout>
+
+<style>
+  .resume {
+    margin-top: 2em;
+    padding-top: 1em;
+    border-top: 1px solid var(--rule);
+  }
+
+  .resume a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .resume a:hover {
+    color: var(--purple);
+  }
+
+  .resume a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+</style>

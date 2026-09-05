@@ -1,6 +1,4 @@
 ---
-const RESUME_URL =
-  "https://docs.google.com/viewer?url=https://github.com/evinaik/resume/raw/master/resume.pdf";
 const { pathname } = Astro.url;
 ---
 
@@ -15,7 +13,45 @@ const { pathname } = Astro.url;
       <li>
         <a href="/" aria-current={pathname === "/" ? "page" : undefined}>Home</a>
       </li>
-      <li><a href={RESUME_URL}>Resume</a></li>
+      <li>
+        <a href="/stuff" aria-current={pathname === "/stuff" || pathname === "/stuff/" ? "page" : undefined}>Stuff</a>
+      </li>
+      <li>
+        <button type="button" class="theme-toggle" title="Switch theme">
+          <span class="visually-hidden">Switch theme</span>
+          <svg
+            class="icon moon"
+            viewBox="0 0 24 24"
+            width="15"
+            height="15"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+          </svg>
+          <svg
+            class="icon sun"
+            viewBox="0 0 24 24"
+            width="15"
+            height="15"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="4"></circle>
+            <path
+              d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+            ></path>
+          </svg>
+        </button>
+      </li>
     </ul>
   </nav>
 </header>
@@ -27,18 +63,25 @@ const { pathname } = Astro.url;
     flex-wrap: wrap;
     gap: 0.5rem 1rem;
     justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
   h1 {
     color: var(--heading);
-    font-size: 1.5rem;
+    font-size: 1.5em;
     font-weight: 500;
-    margin: 0;
+    text-align: center;
   }
 
   h1 a {
-    color: inherit;
     text-decoration: none;
+  }
+
+  h1 a,
+  h1 a:visited {
+    color: inherit;
   }
 
   .typewriter::after {
@@ -61,28 +104,111 @@ const { pathname } = Astro.url;
     }
   }
 
+  nav {
+    text-align: center;
+  }
+
   nav ul {
+    align-items: center;
+    color: var(--text);
     display: flex;
-    gap: 1.5rem;
+    font-size: 1.2em;
     list-style: none;
-    margin: 0;
+    justify-content: center;
     padding: 0;
   }
 
   nav li {
     text-transform: uppercase;
-    font-size: 0.95rem;
-    letter-spacing: 0.04em;
+    margin: 0 1em;
   }
 
   nav a {
-    color: inherit;
     text-decoration: none;
   }
 
-  nav a:hover,
+  nav a,
+  nav a:visited {
+    color: inherit;
+  }
+
+  nav a:hover {
+    color: var(--purple);
+  }
+
   nav a[aria-current="page"] {
     color: var(--purple);
+  }
+
+  .theme-toggle {
+    background: none;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    padding: 0;
+  }
+
+  .theme-toggle:hover {
+    color: var(--purple);
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /* Show the icon for the theme the button switches *to*. */
+  .sun {
+    display: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .moon {
+      display: none;
+    }
+    :root:not([data-theme="light"]) .sun {
+      display: block;
+    }
+  }
+
+  :root[data-theme="dark"] .moon {
+    display: none;
+  }
+  :root[data-theme="dark"] .sun {
+    display: block;
+  }
+
+  :root[data-theme="light"] .moon {
+    display: block;
+  }
+  :root[data-theme="light"] .sun {
+    display: none;
+  }
+
+  @media (max-width: 560px) {
+    header {
+      justify-content: center;
+    }
+
+    h1 {
+      flex-basis: 100%;
+      margin-bottom: 0;
+    }
+
+    nav ul {
+      flex-wrap: wrap;
+      margin-top: 0;
+    }
+
+    nav li {
+      margin: 0 0.6em;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -112,4 +238,33 @@ const { pathname } = Astro.url;
   } else if (el) {
     el.classList.add("done");
   }
+
+  const root = document.documentElement;
+  const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+  const button = document.querySelector<HTMLButtonElement>(".theme-toggle");
+
+  const current = () =>
+    root.dataset.theme ?? (systemDark.matches ? "dark" : "light");
+
+  const label = () => {
+    if (!button) return;
+    const next = current() === "dark" ? "light" : "dark";
+    const text = `Switch to ${next} theme`;
+    button.title = text;
+    const sr = button.querySelector(".visually-hidden");
+    if (sr) sr.textContent = text;
+  };
+
+  button?.addEventListener("click", () => {
+    const next = current() === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem("theme", next);
+    } catch (e) {}
+    label();
+  });
+
+  // Keep the label right if the system flips while no choice is stored.
+  systemDark.addEventListener("change", label);
+  label();
 </script>

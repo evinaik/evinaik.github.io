@@ -1,0 +1,149 @@
+---
+import { cv } from "../data/cv";
+---
+
+<div class="cv">
+  {
+    cv.map((section) => (
+      <>
+        <h2>{section.title}</h2>
+        {section.entries.map((entry) =>
+          entry.stacked ? (
+            <div class="entry stacked">
+              <div class="stacked-head">
+                <span class="org">
+                  {entry.url ? (
+                    <a href={entry.url} target="_blank" rel="noopener noreferrer">
+                      {entry.org}
+                    </a>
+                  ) : (
+                    entry.org
+                  )}
+                </span>
+                <span class="dates">{entry.dates}</span>
+              </div>
+              <div class="stacked-meta">{entry.role}</div>
+            </div>
+          ) : (
+            <div class="entry standard">
+              <span class="org">
+                {entry.url ? (
+                  <a href={entry.url} target="_blank" rel="noopener noreferrer">
+                    {entry.org}
+                  </a>
+                ) : (
+                  entry.org
+                )}
+              </span>
+              <span class="role">{entry.role}</span>
+              <span class="dates">{entry.dates}</span>
+            </div>
+          )
+        )}
+      </>
+    ))
+  }
+</div>
+
+<style>
+  .entry {
+    padding: 0.85em 0;
+  }
+
+  .entry + .entry {
+    border-top: 1px solid var(--rule);
+  }
+
+  .standard {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 12ch;
+    grid-template-areas: "org role dates";
+    column-gap: 1.5em;
+  }
+
+  h2 {
+    color: var(--text);
+    font-size: 1em;
+    font-weight: 500;
+    grid-column: 1 / -1;
+    letter-spacing: 0.12em;
+    margin: 0;
+    opacity: 0.55;
+    text-transform: uppercase;
+  }
+
+  h2:not(:first-child) {
+    margin-top: 1.6em;
+  }
+
+  .org {
+    color: var(--heading);
+  }
+
+  .standard > .org {
+    grid-area: org;
+  }
+
+  .standard > .role {
+    grid-area: role;
+  }
+
+  .standard > .dates {
+    grid-area: dates;
+  }
+
+  .org a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .org a:hover {
+    color: var(--purple);
+  }
+
+  .org a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  .dates {
+    font-variant-numeric: tabular-nums;
+    opacity: 0.6;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .stacked {
+    min-width: 0;
+  }
+
+  .stacked-head {
+    display: flex;
+    gap: 1.5em;
+    justify-content: space-between;
+  }
+
+  .stacked-meta {
+    opacity: 0.75;
+  }
+
+  @media (max-width: 650px) {
+    .standard {
+      grid-template-columns: minmax(0, 1fr) max-content;
+      grid-template-areas: "org dates" "role role";
+      row-gap: 0.15em;
+    }
+
+    .role {
+      opacity: 0.8;
+    }
+
+    .stacked-head {
+      display: block;
+    }
+
+    .stacked-head .dates {
+      text-align: left;
+    }
+  }
+</style>
