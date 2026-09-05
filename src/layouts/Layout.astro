@@ -21,13 +21,21 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/icon.png" />
-    <meta name="theme-color" content="#9999ff" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     {description && <meta property="og:description" content={description} />}
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary" />
     <meta name="generator" content={Astro.generator} />
+    <script is:inline>
+      // Runs before first paint so a stored choice never flashes the wrong theme.
+      try {
+        var stored = localStorage.getItem("theme");
+        if (stored === "light" || stored === "dark") {
+          document.documentElement.dataset.theme = stored;
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <main>
@@ -39,3 +47,27 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     </main>
   </body>
 </html>
+
+<style>
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 0;
+    font-family: "SF Mono Regular", "Source Code Pro", "Inconsolata", "Monaco",
+      monospace;
+    font-size: 12px;
+  }
+
+  hr {
+    max-width: 600px;
+  }
+
+  article {
+    color: var(--text);
+    font-size: 1.2em;
+    line-height: 1.9em;
+  }
+</style>

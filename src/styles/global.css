@@ -1,3 +1,8 @@
+/*
+ * Dark applies when the system asks for it, unless an explicit choice is
+ * stored on <html data-theme>. Every token is defined on bare :root first,
+ * so nothing depends on a media query having matched.
+ */
 :root {
   --purple: hsl(240, 100%, 72%);
   --bg: #fff;
@@ -5,75 +10,40 @@
   --heading: #2e2e36;
   --rule: hsl(240, 100%, 88%);
 
-  --font-mono: "SF Mono", "SFMono-Regular", "Source Code Pro", "Inconsolata",
-    "Monaco", ui-monospace, monospace;
+  color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --purple: hsl(240, 100%, 80%);
     --bg: #131318;
     --text: #b0b0bb;
     --heading: #e4e4ec;
     --rule: hsl(240, 30%, 28%);
+
+    color-scheme: dark;
   }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+:root[data-theme="dark"] {
+  --purple: hsl(240, 100%, 80%);
+  --bg: #131318;
+  --text: #b0b0bb;
+  --heading: #e4e4ec;
+  --rule: hsl(240, 30%, 28%);
 
-html {
-  color-scheme: light dark;
+  color-scheme: dark;
 }
 
 body {
-  margin: 0;
   background-color: var(--bg);
   color: var(--text);
-  font-family: var(--font-mono);
-  font-size: 15px;
-  line-height: 1.85;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-
-main {
-  margin: 0 auto;
-  max-width: 640px;
-  padding: 3rem 1.25rem 4rem;
-}
-
-@media (max-width: 480px) {
-  body {
-    font-size: 14px;
-  }
-
-  main {
-    padding: 2rem 1.125rem 3rem;
-  }
+  transition: background-color 150ms ease, color 150ms ease;
 }
 
 hr {
   border: 0;
   border-top: 1px solid var(--rule);
   border-radius: 20px;
-  margin: 1.75rem 0;
   width: 100%;
-}
-
-p {
-  margin: 0 0 1.5rem;
-}
-
-a {
-  color: var(--purple);
-}
-
-a:focus-visible {
-  outline: 2px solid var(--purple);
-  outline-offset: 2px;
-  border-radius: 2px;
 }
